@@ -1,0 +1,18 @@
+
+version: "3.1"
+services:
+    memcached:
+      image: memcached:alpine
+      container_name: wonderkind-memcached
+    symfony:
+      build: docker/symfony
+      container_name: wonderkind
+      working_dir: /app
+      volumes:
+        - .:/app
+      restart: on-failure
+      tty: true
+      stdin_open: true
+      ports:
+        - '8000:8000'
+

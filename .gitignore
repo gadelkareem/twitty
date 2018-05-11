@@ -1,0 +1,6 @@
+/logs
+/.data
+.env
+.idea
+wonderkind/composer.lock
+wonderkind/symfony.lock
