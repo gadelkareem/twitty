@@ -7,28 +7,18 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
+php:
+  - 7.1
+  - 7.2
+
 matrix:
   fast_finish: true
-  include:
-    - php: 5.5
-    - php: 5.6
-    - php: 7.0
-    - php: hhvm
-  allow_failures:
-    - php: hhvm
 
-env:
-  - SYMFONY_VERSION="4.0.*"
+before_install:
+  - phpenv config-rm xdebug.ini
+  - composer install --no-interaction
 
-before-install:
-  - composer self-update
-
-install:
-  - composer install
-
-
-script:
-  - phpunit
+script: vendor/bin/phpunit
 
 
 
