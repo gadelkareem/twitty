@@ -1,6 +1,6 @@
-/logs
-/.data
-.env
+
+/.env
+/public/bundles/
+/var/
+/vendor/
 .idea
-wonderkind/composer.lock
-wonderkind/symfony.lock
