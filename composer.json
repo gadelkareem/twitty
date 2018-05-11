@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "Wonderkind Twitter assignment",
   "require": {
-    "php": "^7.0.8",
+    "php": "^7.2",
     "ext-iconv": "*",
     "symfony/console": "^3.4",
     "symfony/flex": "^1.0",

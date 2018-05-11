@@ -1,9 +1,9 @@
 
 version: "3.1"
 services:
-    memcached:
-      image: memcached:alpine
-      container_name: wonderkind-memcached
+    redis:
+      image: redis:latest
+      container_name: wonderkind-cache
     symfony:
       build: docker/symfony
       container_name: wonderkind
@@ -15,4 +15,7 @@ services:
       stdin_open: true
       ports:
         - '8000:8000'
+      depends_on:
+        - redis
+
 

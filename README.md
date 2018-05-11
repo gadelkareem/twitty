@@ -1,1 +1,2 @@
-docker-compose up --force-recreate -d
+docker-compose build --no-cache
+docker-compose up
