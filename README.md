@@ -1,4 +1,4 @@
- #Installation
+ # Installation
      - fill and rename .env.dist to .env
      - `docker-compose build --no-cache`
      - `docker-compose up`
@@ -12,7 +12,7 @@
 
 
 
- #TODO
+ # TODO
     - caching
     - tests
     - pub/sub ?
