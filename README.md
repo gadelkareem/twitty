@@ -1,3 +1,5 @@
+# Twitty
+[![Build Status](https://travis-ci.org/gadelkareem/twitty.svg)](https://travis-ci.org/gadelkareem/twitty)
  # Installation
 - fill and rename .env.dist to .env
 - `docker-compose build --no-cache`
