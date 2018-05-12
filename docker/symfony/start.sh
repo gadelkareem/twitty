@@ -34,6 +34,6 @@ exec composer install
 exec composer install dump-autoload --optimize --classmap-authoritative
 
 echo "Starting Server.."
-
+exec ./bin/console server:run 0.0.0.0
 
 
