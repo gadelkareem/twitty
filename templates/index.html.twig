@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Wonderkind{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" rel="stylesheet" type="text/css" />
+        <style>
+            .alert {
+                display: block;
+                padding: 20px;
+                border-left: 5px solid;
+            }
+
+            .alert-success {
+                background-color: #D5F5E3;
+                border-left-color: #2ECC71;
+                color: #2ECC71;
+            }
+            .alert-error {
+                background-color: #F2D7D5;
+                border-left-color: #C0392B;
+                color: #C0392B;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="splash-container">
+        <div class="splash">
+            <h1 class="splash-head"><a href="/">Wonderkind</a></h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel">
+            {% if app.session.flashBag.has('success') %}
+                <div class="alert alert-success">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if app.session.flashBag.has('error') %}
+                <div class="alert alert-error">
+                    {% for msg in app.session.flashBag.get('error') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {{ form_start(form, {'attr': { 'class':"pure-form"}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+    </body>
+</html>
