@@ -7,24 +7,34 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use WonderKind\Exception\TwitterException;
-use WonderKind\Service\ReportService;
+use WonderKind\Service\ReportingService;
 
-class DefaultController extends AbstractController
+/**
+ * @package WonderKind\Controller
+ */
+class ReportingController extends AbstractController
 {
+    /**
+     * @var ReportingService
+     */
     private $reportService;
 
 
-    public function __construct(ReportService $reportService)
+    /**
+     * ReportingController constructor.
+     * @param ReportingService $reportService
+     */
+    public function __construct(ReportingService $reportService)
     {
         $this->reportService = $reportService;
     }
 
+
     /**
-     * @Route("/", methods={"GET", "POST"}, name="main_form")
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function index(Request $request): Response
     {

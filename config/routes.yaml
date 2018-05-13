@@ -1,3 +1,3 @@
 index:
     path: /
-    defaults: { _controller: 'WonderKind\Controller\DefaultController::index' }
+    defaults: { _controller: 'WonderKind\Controller\ReportingController::index' }

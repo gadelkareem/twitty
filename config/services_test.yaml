@@ -1,0 +1,14 @@
+parameters:
+
+
+services:
+    _defaults:
+        public: true
+
+    WonderKind\Tests\Mock\TwitterClientMock:
+    WonderKind\Service\ReportingService:
+      arguments:
+        $client: '@WonderKind\Tests\Mock\TwitterClientMock'
+        $cache:  '@cache.app'
+        $logger: '@monolog.logger.request'
+

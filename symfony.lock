@@ -2,6 +2,12 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "symfony/browser-kit": {
+        "version": "v3.4.9"
+    },
+    "symfony/dom-crawler": {
+        "version": "v3.4.9"
+    },
     "symfony/form": {
         "version": "v3.4.9"
     },
@@ -25,6 +31,15 @@
     },
     "symfony/options-resolver": {
         "version": "v3.4.9"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
+        }
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.8.0"

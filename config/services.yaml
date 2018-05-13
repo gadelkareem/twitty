@@ -23,5 +23,14 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    WonderKind\Service\ReportingService:
+        arguments:
+          $client: '@WonderKind\Twitter\TwitterClient'
+          $cache:  '@cache.app'
+          $logger: '@monolog.logger.request'
+
+
+
+
+
+

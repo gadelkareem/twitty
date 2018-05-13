@@ -4,8 +4,10 @@ WORKDIR "/app"
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get -y --no-install-recommends install redis-tools git zip unzip \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+    && apt-get -y --no-install-recommends install redis-tools git zip unzip libzip-dev \
+    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* \
+    && docker-php-ext-configure zip --with-libzip \
+    && docker-php-ext-install zip
 
 RUN pecl install redis && docker-php-ext-enable redis
 

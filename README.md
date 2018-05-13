@@ -14,7 +14,6 @@
 
 
  # TODO
-- tests
 - pub/sub ?
     
     

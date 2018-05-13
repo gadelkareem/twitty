@@ -7,10 +7,10 @@ use WonderKind\Twitter\TwitterClient;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 /**
- * Class ReportService
+ * Class ReportingService
  * @package WonderKind\Twitter
  */
-class ReportService
+class ReportingService
 {
     /**
      * @var LoggerInterface
@@ -47,19 +47,18 @@ class ReportService
      */
     public function CountReTweeterFollowers(string $url): int
     {
-        $cacheKey = "CountReTweeterFollowers_" . md5($url);
-        $cacheItem = $this->cache->getItem($cacheKey);
+        $id = $this->twitter->extractTweetIdFromUrl($url);
+        $cacheItem = $this->cache->getItem("CountReTweeterFollowers_" . $id);
         if ($cacheItem->isHit()) {
             return $cacheItem->get();
         }
-
-        $id = $this->twitter->extractTweetIdFromUrl($url);
         $reTweeters = $this->twitter->getReTweeters($id);
         $totalFollowers = $this->twitter->calculateRetweetFollowers($reTweeters);
-
-        $cacheItem->set($totalFollowers)->expiresAfter(new \DateInterval("PT2H"));
+        $cacheItem
+            ->set($totalFollowers)
+            ->expiresAfter(new \DateInterval("PT2H"))
+            ->tag([(string)$id]);
         $this->cache->save($cacheItem);
-
         return $totalFollowers;
     }
 }

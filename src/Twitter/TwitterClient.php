@@ -32,14 +32,14 @@ class TwitterClient
     /**
      * @param string $url
      * @return int
-     * @throws TwitterException
+     * @throws \InvalidArgumentException
      */
     public function extractTweetIdFromUrl(string $url): int
     {
         //ex: https://twitter.com/SpaceX/status/995043176363671552
-        $id = (int)preg_replace("#^.+?\/status\/([0-9]+)/?$#", "$1", $url);
+        $id = (int)preg_replace("#^https?:\/\/twitter\.com\/[^/]+\/status\/([0-9]+)/?$#", "$1", $url);
         if (empty($id)) {
-            throw new TwitterException("Invalid URL specified {$url} id: {$id}");
+            throw new \InvalidArgumentException("Invalid URL specified {$url} id: {$id}");
         }
         return $id;
     }
@@ -75,8 +75,19 @@ class TwitterClient
     public function calculateRetweetFollowers(array $retweets): int
     {
         $total = 0;
+        $userIds = [];
         foreach ($retweets as $retweet) {
+            if (isset($userIds[$retweet->user->id])) {
+                continue;
+            }
             $total += $retweet->user->followers_count;
+            $userIds[$retweet->user->id] = true;
+            if (property_exists($retweet, "retweeted_status")
+                && !isset($userIds[$retweet->retweeted_status->user->id])) {
+                $total += $retweet->retweeted_status->user->followers_count;
+                $userIds[$retweet->retweeted_status->user->id] = true;
+            }
+
         }
         return $total;
     }

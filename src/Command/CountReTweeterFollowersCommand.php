@@ -6,7 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use WonderKind\Service\ReportService;
+use WonderKind\Service\ReportingService;
 
 
 /**
@@ -20,16 +20,16 @@ class CountReTweeterFollowersCommand extends Command
      */
     protected static $defaultName = 'wonderkind:count-retweeter-followers';
     /**
-     * @var ReportService
+     * @var ReportingService
      */
     private $reportService;
 
 
     /**
      * CountReTweeterFollowersCommand constructor.
-     * @param ReportService $reportService
+     * @param ReportingService $reportService
      */
-    public function __construct(ReportService $reportService)
+    public function __construct(ReportingService $reportService)
     {
         parent::__construct();
         $this->reportService = $reportService;
@@ -52,14 +52,16 @@ class CountReTweeterFollowersCommand extends Command
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void
+     * @throws \Exception
      * @throws \WonderKind\Exception\TwitterException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $url = $input->getOption('tweet-url');
-
+        if (empty($url)) {
+            throw new \InvalidArgumentException("Invalid URL Specified.");
+        }
         $totalFollowers = $this->reportService->CountReTweeterFollowers($url);
-
         $output->writeln("Found total of {$totalFollowers} followers to users who retweeted {$url}");
     }
 

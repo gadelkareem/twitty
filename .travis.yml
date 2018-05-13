@@ -1,8 +1,5 @@
 language: php
 
-services:
-  - redis
-
 cache:
   directories:
     - $HOME/.composer/cache/files
