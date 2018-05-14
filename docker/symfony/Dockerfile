@@ -18,5 +18,5 @@ RUN mv /usr/bin/composer.phar /usr/bin/composer
 
 ADD ./start.sh /start.sh
 RUN chmod +x /start.sh
-ENTRYPOINT /start.sh && /bin/bash
 
+ENTRYPOINT /start.sh && /bin/bash

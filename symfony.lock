@@ -1,6 +1,21 @@
 {
+    "abraham/twitteroauth": {
+        "version": "0.7.4"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
+    },
+    "psr/cache": {
+        "version": "1.0.1"
+    },
+    "psr/container": {
+        "version": "1.0.0"
+    },
+    "psr/log": {
+        "version": "1.0.2"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "symfony/browser-kit": {
         "version": "v3.4.9"
@@ -23,6 +38,9 @@
             "ref": "e3868d2f4a5104f19f844fe551099a00c6562527"
         }
     },
+    "symfony/debug": {
+        "version": "v3.4.9"
+    },
     "symfony/dependency-injection": {
         "version": "v3.4.9"
     },
@@ -32,11 +50,23 @@
     "symfony/dotenv": {
         "version": "v3.4.9"
     },
+    "symfony/event-dispatcher": {
+        "version": "v3.4.9"
+    },
     "symfony/filesystem": {
         "version": "v3.4.9"
     },
     "symfony/finder": {
         "version": "v3.4.9"
+    },
+    "symfony/flex": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "cc1afd81841db36fbef982fe56b48ade6716fac4"
+        }
     },
     "symfony/form": {
         "version": "v3.4.9"
@@ -93,6 +123,9 @@
         "version": "v1.8.0"
     },
     "symfony/polyfill-intl-icu": {
+        "version": "v1.8.0"
+    },
+    "symfony/polyfill-mbstring": {
         "version": "v1.8.0"
     },
     "symfony/process": {
