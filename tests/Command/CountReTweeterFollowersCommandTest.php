@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WonderKind\Tests\Command;
 
@@ -9,9 +10,17 @@ use WonderKind\Command\CountReTweeterFollowersCommand;
 use WonderKind\Service\ReportingService;
 use WonderKind\Tests\Mock\TwitterClientMock;
 
+/**
+ * Class CountReTweeterFollowersCommandTest
+ * @package WonderKind\Tests\Command
+ */
 class CountReTweeterFollowersCommandTest extends KernelTestCase
 {
 
+    /**
+     * Testing the count retweets' followers command
+     * The test config provide us with an autowired mock service for the twitter client so we only inject the fake response here
+     */
     public function testCountReTweeterFollowersCommand()
     {
         self::bootKernel();
@@ -26,7 +35,7 @@ class CountReTweeterFollowersCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(["--tweet-url" => "https://twitter.com/SpaceX/status/995043176363671552"]);
 
-        $this->assertSame("Found total of 6999316 followers to users who retweeted https://twitter.com/SpaceX/status/995043176363671552\n",$commandTester->getDisplay() );
+        $this->assertSame("Found total of 6999316 followers to users who retweeted https://twitter.com/SpaceX/status/995043176363671552\n", $commandTester->getDisplay());
     }
 
 }

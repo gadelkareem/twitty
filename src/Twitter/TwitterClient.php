@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WonderKind\Twitter;
 
@@ -53,11 +54,11 @@ class TwitterClient
      * Requests / 15-min window (app auth)    300
      *
      * @link: https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-retweets-id
-     * @param string $id
+     * @param int $id
      * @return array
      * @throws TwitterException
      */
-    public function getReTweeters(string $id): array
+    public function getReTweeters(int $id): array
     {
         $this->logger->debug("New getReTweeters request for id {$id}");
         $retweets = $this->client->get("statuses/retweets/{$id}", ["count" => 100]);
@@ -92,10 +93,12 @@ class TwitterClient
 
     /**
      * Error Handler.
+     * The error handler accepts any response from TwitterOAuth and checks if it is an object containing an error
+     *  then it converts it into a TwitterException.
      * @param array|object $response
      * @throws TwitterException
      */
-    private function errorHandler($response)
+    private function errorHandler($response): void
     {
         if (is_object($response) && property_exists($response, "errors")) {
             $message = "";

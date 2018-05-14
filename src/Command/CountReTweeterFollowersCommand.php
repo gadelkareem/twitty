@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WonderKind\Command;
 
@@ -51,11 +52,11 @@ class CountReTweeterFollowersCommand extends Command
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|null|void
+     * @return int
      * @throws \Exception
      * @throws \WonderKind\Exception\TwitterException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $url = $input->getOption('tweet-url');
         if (empty($url)) {
@@ -63,12 +64,14 @@ class CountReTweeterFollowersCommand extends Command
         }
         $totalFollowers = $this->reportService->CountReTweeterFollowers($url);
         $output->writeln("Found total of {$totalFollowers} followers to users who retweeted {$url}");
+
+        return 0;
     }
 
     /**
      * @return string
      */
-    private function getCommandHelp()
+    private function getCommandHelp(): string
     {
         return <<<'HELP'
 The <info>%command.name%</info> counts the amount of followers each user has that has re-tweeted a tweet.
