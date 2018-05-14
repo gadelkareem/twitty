@@ -1,9 +1,9 @@
 language: php
 
-#cache:
-#  directories:
-#    - $HOME/.composer/cache/files
-#    - $HOME/symfony-bridge/.phpunit
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+    - $HOME/symfony-bridge/.phpunit
 
 php:
   - 7.2
