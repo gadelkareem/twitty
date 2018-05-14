@@ -6,8 +6,15 @@ namespace WonderKind\Tests\Mock;
 use WonderKind\Twitter\TwitterClient;
 use \Abraham\TwitterOAuth\Util\JsonDecoder;
 
+/**
+ * Class TwitterClientMock
+ * @package WonderKind\Tests\Mock
+ */
 class TwitterClientMock extends TwitterClient
 {
+    /**
+     * @var array
+     */
     private $data = [];
 
     /**
@@ -17,7 +24,11 @@ class TwitterClientMock extends TwitterClient
     {
     }
 
-    public function getReTweeters(string $id): array
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function getReTweeters(int $id): array
     {
         if (!isset($this->data['status_retweets_id'])) {
             throw new \BadMethodCallException("'status_retweets_id' data missing.");
@@ -26,6 +37,10 @@ class TwitterClientMock extends TwitterClient
     }
 
 
+    /**
+     * @param string $key
+     * @param string $value
+     */
     public function addData(string $key, string $value)
     {
         $this->data[$key] = $value;
