@@ -6,12 +6,14 @@ cache:
     - $HOME/symfony-bridge/.phpunit
 
 php:
+  - 7.1
   - 7.2
 
 matrix:
   fast_finish: true
 
 before_install:
+  - cp app/.env.test app/.env
   - phpenv config-rm xdebug.ini
   - composer install --no-interaction
   - ./vendor/bin/simple-phpunit install
