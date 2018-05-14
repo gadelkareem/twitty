@@ -77,13 +77,11 @@ class TwitterClient
         $total = 0;
         $userIds = [];
         foreach ($retweets as $retweet) {
-            if (isset($userIds[$retweet->user->id])) {
-                continue;
+            if (!isset($userIds[$retweet->user->id])) {
+                $total += $retweet->user->followers_count;
+                $userIds[$retweet->user->id] = true;
             }
-            $total += $retweet->user->followers_count;
-            $userIds[$retweet->user->id] = true;
-            if (property_exists($retweet, "retweeted_status")
-                && !isset($userIds[$retweet->retweeted_status->user->id])) {
+            if (!isset($userIds[$retweet->retweeted_status->user->id])) {
                 $total += $retweet->retweeted_status->user->followers_count;
                 $userIds[$retweet->retweeted_status->user->id] = true;
             }
