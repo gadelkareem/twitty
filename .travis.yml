@@ -3,6 +3,7 @@ language: php
 cache:
   directories:
     - $HOME/.composer/cache/files
+    - $HOME/symfony-bridge/.phpunit
 
 php:
   - 7.2
@@ -13,8 +14,9 @@ matrix:
 before_install:
   - phpenv config-rm xdebug.ini
   - composer install --no-interaction
+  - ./vendor/bin/simple-phpunit install
 
-script: ./bin/phpunit
+script: ./vendor/bin/simple-phpunit
 
 
 
